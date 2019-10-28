@@ -31,6 +31,7 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
             //Add Score
             roundScore += dice + dice2;
             //putting text to log
+            
             document.querySelector('.log-text').textContent = 'Roll or Hold';
             addScore();
         } else if (dice === 6 && dice!==1 && dice2 !== 1 && sixCount === 0) {
@@ -39,6 +40,7 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
             sixCount += 1;
             document.querySelector('#player-' + activePlayer + '-sixes').textContent = '6';
             //putting text to log
+            
             document.querySelector('.log-text').textContent = 'Careful! Rolled one SIX';
             console.log(sixCount);
             
@@ -48,6 +50,7 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
             sixCount += 1;
             document.querySelector('#player-' + activePlayer + '-sixes').textContent = '6';
             //putting text to log
+            
             document.querySelector('.log-text').textContent = 'Careful! Rolled one SIX';
             console.log(sixCount);
             
@@ -58,6 +61,7 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
             document.querySelector('#player-0-sixes').textContent = ' ';
             document.querySelector('#player-1-sixes').textContent = ' ';
             //putting text to log
+            
             document.querySelector('.log-text').textContent = 'Rolled TWO six! Turn lost.';
             
             rollOneAudio.play();          
@@ -118,6 +122,7 @@ document.querySelector('.btn-hold').addEventListener('click', function(){
             document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
             document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
             //putting text to log
+            
             document.querySelector('.log-text').textContent = 'Game has Ended';
             winAudio.play();
             //Set the gamePlaying variable to false, as the game will end here.
@@ -152,6 +157,7 @@ function init (){
     helpAudio = new Audio ('help.wav');
     winAudio = new Audio ('win.wav');
     //putting text to log
+    
     document.querySelector('.log-text').textContent = 'Roll the dice to start the game';
     
     
@@ -228,6 +234,7 @@ document.querySelector('.btn-new').addEventListener('click', init);
 //Instructions btn event
 document.querySelector('.btn-help').addEventListener('click', function(){
 
+    document.querySelector('.instructions-panel').classList.add('fade-in');
     document.querySelector('.instructions-panel').style.display = 'block';
     helpAudio.play();
     gamePlaying = false;
