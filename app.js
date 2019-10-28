@@ -20,22 +20,26 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
         var dice2 = Math.floor(Math.random()*6) + 1;
         //Display the result
         var diceDOM = document.querySelector('.dice');
-        var diceDOM = document.querySelector('.dice2');
+        var dice2DOM = document.querySelector('.dice2');
         document.querySelector('.dice').style.display = 'block';
         document.querySelector('.dice2').style.display = 'block';
         diceDOM.src = 'dice-' + dice + '.png';
-        diceDOM.src = 'dice-' + dice2 + '.png';
+        dice2DOM.src = 'dice-' + dice2 + '.png';
         
         //Update the round score If the number rolled is not 1
         if (dice !== 1 && dice !== 6 && dice2 !== 1 && dice2 !==6){
             //Add Score
             roundScore += dice + dice2;
+            //putting text to log
+            document.querySelector('.log-text').textContent = 'Roll or Hold';
             addScore();
         } else if (dice === 6 && dice!==1 && dice2 !== 1 && sixCount === 0) {
             roundScore += dice + dice2;  
             addScore();
             sixCount += 1;
             document.querySelector('#player-' + activePlayer + '-sixes').textContent = '6';
+            //putting text to log
+            document.querySelector('.log-text').textContent = 'Careful! Rolled one SIX';
             console.log(sixCount);
             
         } else if (dice2 === 6 && dice!==1 && dice2 !== 1 && sixCount === 0) {
@@ -43,6 +47,8 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
             addScore();
             sixCount += 1;
             document.querySelector('#player-' + activePlayer + '-sixes').textContent = '6';
+            //putting text to log
+            document.querySelector('.log-text').textContent = 'Careful! Rolled one SIX';
             console.log(sixCount);
             
         } else if (dice === 6 && dice!==1 && dice2 !== 1 && sixCount === 1) {
@@ -51,6 +57,8 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
             console.log(sixCount);
             document.querySelector('#player-0-sixes').textContent = ' ';
             document.querySelector('#player-1-sixes').textContent = ' ';
+            //putting text to log
+            document.querySelector('.log-text').textContent = 'Rolled TWO six! Turn lost.';
             
             rollOneAudio.play();          
         } else if (dice2 === 6 && dice!==1 && dice2 !== 1 && sixCount === 1) {
@@ -59,6 +67,8 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
             console.log(sixCount);
             document.querySelector('#player-0-sixes').textContent = ' ';
             document.querySelector('#player-1-sixes').textContent = ' ';
+            //putting text to log
+            document.querySelector('.log-text').textContent = 'Rolled TWO six! Turn lost.';
             
             rollOneAudio.play();          
         } else if (dice=== 6 && dice2 === 6 && dice !== 1 && dice2 !== 1) {
@@ -67,12 +77,16 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
             console.log(sixCount);
             document.querySelector('#player-0-sixes').textContent = ' ';
             document.querySelector('#player-1-sixes').textContent = ' ';
+            //putting text to log
+            document.querySelector('.log-text').textContent = 'Rolled TWO six! Turn lost.';
         }
         else {
             //If player rolls a 1 -> Activate the next player function
             nextPlayer();
             rollOneAudio.play();
             sixCount = 0;
+            //putting text to log
+            document.querySelector('.log-text').textContent = 'Rolled a ONE! Turn lost.';
             
             
         }
@@ -103,6 +117,8 @@ document.querySelector('.btn-hold').addEventListener('click', function(){
             document.querySelector('.dice2').style.display = 'none';
             document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
             document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
+            //putting text to log
+            document.querySelector('.log-text').textContent = 'Game has Ended';
             winAudio.play();
             //Set the gamePlaying variable to false, as the game will end here.
             gamePlaying = false;
@@ -135,6 +151,8 @@ function init (){
     startAudio = new Audio ('start.wav');
     helpAudio = new Audio ('help.wav');
     winAudio = new Audio ('win.wav');
+    //putting text to log
+    document.querySelector('.log-text').textContent = 'Roll the dice to start the game';
     
     
     //reset sixCount and UI
